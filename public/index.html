@@ -14,6 +14,14 @@
 
       });
 
+      socket.on('welcomeUser', function(msg){
+        console.log(msg.text);
+      });
+
+      socket.on('newUserAdd', function(msg){
+        console.log(msg.text);
+      });
+
       socket.on('newMessage', function(data){
         console.log('New message received', data);
       });

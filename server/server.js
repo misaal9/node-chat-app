@@ -16,8 +16,18 @@ app.use(express.static(publicPath));
 io.on('connection', (socket) => {
   console.log('New client connected');
 
+  // welcome new user to group
+  socket.emit('welcomeUser', {
+    text: "[Admin] Welcome to the group chat"
+  });
+
+  // notify all of new user added
+  socket.broadcast.emit('newUserAdd', {
+    text: "[Admin] New user has been added"
+  });
+
   socket.on('createMsg', (message) => {
-    io.emit('newMessage', {
+    socket.broadcast.emit('newMessage', {
       from: message.from,
       msg: message.msg,
       createdAt: new Date().getTime()
