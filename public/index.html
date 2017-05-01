@@ -15,20 +15,15 @@
       });
 
       socket.on('welcomeUser', function(msg){
-        console.log(msg.text);
+        console.log(msg);
       });
 
       socket.on('newUserAdd', function(msg){
-        console.log(msg.text);
+        console.log(msg);
       });
 
-      socket.on('newMessage', function(data){
-        console.log('New message received', data);
-      });
-
-      socket.emit('createMsg', {
-        from: 'rohit',
-        msg: 'thanks ya'
+      socket.on('newMessage', function(msg){
+        console.log(msg);
       });
 
       socket.on('disconnect', function() {
