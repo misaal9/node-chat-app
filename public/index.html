@@ -5,6 +5,28 @@
     <title>Node Chat App</title>
   </head>
   <body>
-    Node chat app
+    Node chat app. Socket.io. 2.
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      socket.on('connect', function() {
+        console.log('Connected to server');
+
+      });
+
+      socket.on('newMessage', function(data){
+        console.log('New message received', data);
+      });
+
+      socket.emit('createMsg', {
+        from: 'rohit',
+        msg: 'thanks ya'
+      });
+
+      socket.on('disconnect', function() {
+        console.log('Disconnected from server');
+      });
+
+    </script>
   </body>
 </html>
