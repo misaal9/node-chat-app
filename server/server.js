@@ -18,13 +18,14 @@ io.on('connection', (socket) => {
   console.log('New client connected');
 
   // welcome new user to group
-  socket.emit('welcomeUser', generateMessage('Admin', 'Welcome to the chat'));
+  socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat'));
 
   // notify all of new user added
-  socket.broadcast.emit('newUserAdd', generateMessage('Admin', 'New user has been added'));
+  socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user has been added'));
 
-  socket.on('createMsg', (message) => {
-    socket.broadcast.emit('newMessage', generateMessage(message.from, message.text));
+  socket.on('createMsg', (message, callback) => {
+    io.emit('newMessage', generateMessage(message.from, message.text));
+    callback();
   });
 
   socket.on('disconnect', () => {

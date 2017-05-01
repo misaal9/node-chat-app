@@ -5,31 +5,17 @@
     <title>Node Chat App</title>
   </head>
   <body>
-    Node chat app. Socket.io. 2.
+    <div>
+      <ul id="msgList"></ul>
+    </div>
+
+    <form id="form-message" name="form-message">
+      <input type="text" id="newMsg" placeholder="Enter chat message" />
+      <input type="submit" value="Send">
+    </form>
+
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-      var socket = io();
-      socket.on('connect', function() {
-        console.log('Connected to server');
-
-      });
-
-      socket.on('welcomeUser', function(msg){
-        console.log(msg);
-      });
-
-      socket.on('newUserAdd', function(msg){
-        console.log(msg);
-      });
-
-      socket.on('newMessage', function(msg){
-        console.log(msg);
-      });
-
-      socket.on('disconnect', function() {
-        console.log('Disconnected from server');
-      });
-
-    </script>
+    <script src="./js/libs/jquery-3.2.1.slim.min.js"></script>
+    <script src="./js/index.js"></script>
   </body>
 </html>
